@@ -1,0 +1,25 @@
+server:
+  port: 8082
+  servlet:
+    context-path: '/person-service/'
+
+spring:
+  output:
+    ansi:
+      enabled: Always
+  application:
+    name: person-service
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/person_db?createDatabaseIfNotExist=true&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username: ${MYSQL_DB_USERNAME}
+    password: ${MYSQL_DB_PASSWORD}
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      ddlAuto: update
+      jdbc:
+        lob.nonContextualCreation: true
+    properties:
+      hibernate:
+        formatSql: true
+        showSql: true
