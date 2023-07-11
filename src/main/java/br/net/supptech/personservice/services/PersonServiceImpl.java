@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -20,5 +22,10 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonModel savePerson(PersonModel personModel) {
         return personRepository.save(personModel);
+    }
+
+    @Override
+    public Optional<PersonModel> findPersonById(UUID personId) {
+        return personRepository.findById(personId);
     }
 }

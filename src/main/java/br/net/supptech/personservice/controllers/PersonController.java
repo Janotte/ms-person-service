@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/persons")
@@ -28,5 +30,14 @@ public class PersonController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(personService.savePerson(personModel));
+    }
+
+    @GetMapping("/{personId}")
+    public ResponseEntity<?> getPerson(@PathVariable UUID personId) {
+        Optional<PersonModel> optionalPersonModel = personService.findPersonById(personId);
+        if (optionalPersonModel.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(optionalPersonModel.get());
     }
 }
