@@ -12,4 +12,6 @@ public interface PersonService {
     PersonModel savePerson(PersonModel personModel);
 
     Optional<PersonModel> findPersonById(UUID personId);
+
+    void deletePerson(PersonModel personModel);
 }

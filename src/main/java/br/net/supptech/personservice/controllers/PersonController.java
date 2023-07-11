@@ -51,4 +51,14 @@ public class PersonController {
         BeanUtils.copyProperties(personModel, optionalPersonModel.get(), "personId");
         return ResponseEntity.status(HttpStatus.OK).body(personService.savePerson(optionalPersonModel.get()));
     }
+
+    @DeleteMapping("/{personId}")
+    public ResponseEntity<?> deletePerson(@PathVariable UUID personId) {
+        Optional<PersonModel> optionalPersonModel = personService.findPersonById(personId);
+        if (optionalPersonModel.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found!");
+        }
+        personService.deletePerson(optionalPersonModel.get());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person deleted successfully!");
+    }
 }

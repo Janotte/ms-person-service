@@ -28,4 +28,9 @@ public class PersonServiceImpl implements PersonService {
     public Optional<PersonModel> findPersonById(UUID personId) {
         return personRepository.findById(personId);
     }
+
+    @Override
+    public void deletePerson(PersonModel personModel) {
+        personRepository.delete(personModel);
+    }
 }
