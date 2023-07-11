@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PersonService {
     List<PersonModel> getPersons();
+
+    PersonModel savePerson(PersonModel personModel);
 }

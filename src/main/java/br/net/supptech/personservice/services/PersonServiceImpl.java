@@ -16,4 +16,9 @@ public class PersonServiceImpl implements PersonService {
     public List<PersonModel> getPersons() {
         return personRepository.findAll();
     }
+
+    @Override
+    public PersonModel savePerson(PersonModel personModel) {
+        return personRepository.save(personModel);
+    }
 }
